@@ -6,22 +6,27 @@
 */
 
 #include "parser.h"
+#include "Panoramix/panoramix.h"
+#include <stdio.h>
 #include <stdlib.h>
 
-args_t *parse_args(char **av)
+int parse_args(int ac, char **av, args_t *args)
 {
-    args_t *args = calloc(1, sizeof(args_t));
-
-    if (args == NULL)
-        return (NULL);
+    if (ac != 5) {
+        printf(USAGE_MSG_1);
+        printf(USAGE_MSG_2);
+        return 84;
+    }
     args->nb_villagers = atoi(av[1]);
     args->pot_size = atoi(av[2]);
     args->nb_fights = atoi(av[3]);
     args->nb_refills = atoi(av[4]);
     if (args->nb_villagers <= 0 || args->pot_size <= 0 ||
         args->nb_fights <= 0 || args->nb_refills <= 0) {
-        free(args);
-        return (NULL);
+        printf(USAGE_MSG_1);
+        printf(USAGE_MSG_2);
+        printf(VALUES_MSG);
+        return 84;
     }
-    return (args);
+    return 0;
 }

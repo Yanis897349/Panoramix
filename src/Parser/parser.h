@@ -15,6 +15,6 @@ typedef struct args_s {
     int nb_refills;
 } args_t;
 
-args_t *parse_args(char **av);
+int parse_args(int ac, char **av, args_t *args);
 
 #endif /* !PARSER_H_ */

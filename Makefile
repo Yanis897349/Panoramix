@@ -8,10 +8,13 @@
 CC ?= gcc
 RM = rm -f
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pthread -I./src/
 
 SRC = src/main.c \
-	src/Parser/parser.c
+	src/Parser/parser.c \
+	src/Panoramix/panoramix.c \
+	src/Panoramix/druid.c \
+	src/Panoramix/villager.c
 
 OBJ = $(SRC:.c=.o)
 

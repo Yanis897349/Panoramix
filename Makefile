@@ -10,7 +10,8 @@ RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = src/main.c
+SRC = src/main.c \
+	src/Parser/parser.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -36,7 +36,7 @@ static void *druid_routine([[maybe_unused]] void *arg)
     while (nb_refills > 0) {
         sem_wait(&state->sync->druid_sem);
         refill_pot(nb_refills);
-        for (int j = 0; j < state->args->nb_villagers; ++j) {
+        for (int i = 0; i < state->args->nb_villagers; ++i) {
             sem_post(&state->sync->refilled_sem);
         }
         nb_refills--;

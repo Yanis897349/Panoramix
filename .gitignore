@@ -54,3 +54,4 @@ dkms.conf
 # Extras
 .cache/
 compile_commands.json
+panoramix

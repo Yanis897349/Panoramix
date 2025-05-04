@@ -30,7 +30,7 @@ static void refill_pot(int nb_refills)
 static void *druid_routine([[maybe_unused]] void *arg)
 {
     panoramix_t *state = get_state(NULL);
-    int nb_refills = get_state(NULL)->args->nb_refills;
+    int nb_refills = state->args->nb_refills;
 
     printf("Druid: I'm ready... but sleepy...\n");
     while (nb_refills > 0) {

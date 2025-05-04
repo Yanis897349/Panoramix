@@ -16,10 +16,9 @@ static int wait_refill(void)
 {
     panoramix_t *state = get_state(NULL);
 
-    pthread_mutex_unlock(&state->sync->servings_mutex);
     sem_wait(&state->sync->refilled_sem);
     pthread_mutex_lock(&state->sync->servings_mutex);
-    if (state->sync->servings <= 0 && state->sync->druid_sleeping == true) {
+    if (state->sync->servings <= 0 && state->sync->druid_sleeping) {
         pthread_mutex_unlock(&state->sync->servings_mutex);
         return 0;
     }
@@ -36,6 +35,7 @@ static int take_serving(int villager_id)
     if (state->sync->servings <= 0) {
         printf("Villager %d: Hey Pano wake up! We need more potion.\n",
             villager_id);
+        pthread_mutex_unlock(&state->sync->servings_mutex);
         sem_post(&state->sync->druid_sem);
         if (wait_refill() == 0)
             return 0;
